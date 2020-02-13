@@ -29,12 +29,10 @@ spec:
   {{- if .Values.deployment.dogstatsdNodePort }}
     nodePort: {{ .Values.deployment.dogstatsdNodePort }}
   {{- end }}
-  {{- if .Values.datadog.apmEnabled }}
   - port: 8126
     name: traceport
     protocol: TCP
   {{- if .Values.deployment.traceNodePort }}
     nodePort: {{ .Values.deployment.traceNodePort }}
-  {{- end }}
   {{- end }}
 {{ end }}

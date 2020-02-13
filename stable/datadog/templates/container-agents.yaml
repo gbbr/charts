@@ -11,14 +11,12 @@
     {{- end }}
     name: dogstatsdport
     protocol: UDP
-  {{- if .Values.datadog.apmEnabled }}
   - containerPort: 8126
     {{- if .Values.daemonset.useHostPort }}
     hostPort: 8126
     {{- end }}
     name: traceport
     protocol: TCP
-  {{- end }}
   env:
     - name: DD_API_KEY
       valueFrom:
@@ -61,10 +59,6 @@
     {{- if .Values.datadog.tags }}
     - name: DD_TAGS
       value: {{ .Values.datadog.tags | quote }}
-    {{- end }}
-    {{- if .Values.datadog.apmEnabled }}
-    - name: DD_APM_ENABLED
-      value: {{ .Values.datadog.apmEnabled | quote }}
     {{- end }}
     {{- if .Values.datadog.processAgentEnabled }}
     - name: DD_PROCESS_AGENT_ENABLED

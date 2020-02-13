@@ -73,9 +73,7 @@ spec:
       containers:
       {{- if .Values.daemonset.useDedicatedContainers }}
         {{- include "container-agent" . | nindent 8 }}
-        {{- if .Values.datadog.apmEnabled }}
-          {{- include "container-trace-agent" . | nindent 8 }}
-        {{- end }}
+        {{- include "container-trace-agent" . | nindent 8 }}
         {{- if or (kindIs "invalid" .Values.datadog.processAgentEnabled) .Values.datadog.processAgentEnabled }}
           {{- include "container-process-agent" . | nindent 8 }}
         {{- end }}
